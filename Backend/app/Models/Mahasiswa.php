@@ -14,6 +14,7 @@ class Mahasiswa extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'user_id',
         'nim',
         'nama',
         'email',
@@ -35,5 +36,9 @@ class Mahasiswa extends Model
         'id_mahasiswa',
         'id_mahasiswa'
          );
+    }
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

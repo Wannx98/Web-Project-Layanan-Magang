@@ -14,6 +14,7 @@ class Dosen extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'user_id',
         'nidn',
         'nama',
         'email',
@@ -49,6 +50,10 @@ class Dosen extends Model
         'id_dosen_verifikator',
         'id_dosen'
         );
+    }
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
 

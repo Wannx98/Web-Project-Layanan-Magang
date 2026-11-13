@@ -14,6 +14,7 @@ class AdminProdi extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'user_id',
         'nama',
         'email',
         'prodi',
@@ -33,6 +34,10 @@ class AdminProdi extends Model
         'id_admin_pemeriksa',
         'id_admin'
         );
+    }
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'user_id', 'id');
     }
     
 }
