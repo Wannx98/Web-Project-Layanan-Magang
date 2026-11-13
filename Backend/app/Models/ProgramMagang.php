@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProgramMagang extends Model
 {
@@ -22,5 +24,29 @@ class ProgramMagang extends Model
         'link_rekrutmen',
         'status_program',
     ];
+     public function instansi(): BelongsTo
+    {
+        return $this->belongsTo(
+            Instansi::class,
+            'id_instansi',
+            'id_instansi'
+        );
+    }
+     public function pengajuanMagangs(): HasMany
+    {
+        return $this->hasMany(
+            PengajuanMagang::class,
+            'id_program',
+            'id_program'
+        );
+    }
+    public function rekomendasiAis(): HasMany
+    {
+    return $this->hasMany(
+        RekomendasiAi::class,
+        'id_program',
+        'id_program'
+        );
+    }
 }
 

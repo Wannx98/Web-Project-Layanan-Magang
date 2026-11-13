@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Mahasiswa extends Model
 {
@@ -19,4 +20,20 @@ class Mahasiswa extends Model
         'prodi',
         'angkatan',
     ];
+    public function pengajuanMagangs(): HasMany
+    {
+        return $this->hasMany(
+            PengajuanMagang::class,
+            'id_mahasiswa',
+            'id_mahasiswa'
+        );
+    }
+    public function rekomendasiAis(): HasMany
+    {
+    return $this->hasMany(
+        RekomendasiAi::class,
+        'id_mahasiswa',
+        'id_mahasiswa'
+         );
+    }
 }

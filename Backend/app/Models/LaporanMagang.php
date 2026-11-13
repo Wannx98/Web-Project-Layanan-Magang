@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LaporanMagang extends Model
 {
@@ -21,4 +22,20 @@ class LaporanMagang extends Model
         'id_dosen_verifikator',
         'catatan_verifikasi',
     ];
+    public function pengajuanMagang(): BelongsTo
+    {
+    return $this->belongsTo(
+        PengajuanMagang::class,
+        'id_pengajuan',
+        'id_pengajuan'
+        );
+    }
+    public function dosenVerifikator(): BelongsTo
+    {
+    return $this->belongsTo(
+        Dosen::class,
+        'id_dosen_verifikator',
+        'id_dosen'
+         );
+    }
 }

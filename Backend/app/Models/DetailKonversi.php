@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DetailKonversi extends Model
 {
@@ -20,4 +21,20 @@ class DetailKonversi extends Model
         'status_detail',
         'catatan',
     ];
+    public function pengajuanKonversi(): BelongsTo
+    {
+    return $this->belongsTo(
+        PengajuanKonversi::class,
+        'id_konversi',
+        'id_konversi'
+        );
+    }
+    public function mataKuliah(): BelongsTo
+    {
+    return $this->belongsTo(
+        MataKuliah::class,
+        'id_mk',
+        'id_mk'
+         );
+    }
 }

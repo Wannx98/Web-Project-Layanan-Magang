@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MataKuliah extends Model
 {
@@ -18,5 +19,29 @@ class MataKuliah extends Model
         'sks',
         'prodi',
     ];
+    public function cpmks(): HasMany
+    {
+        return $this->hasMany(
+            Cpmk::class,
+            'id_mk',
+            'id_mk'
+        );
+    }
+    public function rekomendasiAiDetails(): HasMany
+    {
+    return $this->hasMany(
+        RekomendasiAiDetail::class,
+        'id_mk',
+        'id_mk'
+        );
+    }
+    public function detailKonversis(): HasMany
+    {
+    return $this->hasMany(
+        DetailKonversi::class,
+        'id_mk',
+        'id_mk'
+        );
+    }
 }
 

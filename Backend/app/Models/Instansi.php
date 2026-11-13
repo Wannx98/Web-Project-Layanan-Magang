@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Instansi extends Model
 {
@@ -18,4 +19,13 @@ class Instansi extends Model
         'website',
         'kontak_email',
     ];
+
+    public function programMagangs(): HasMany
+    {
+        return $this->hasMany(
+            ProgramMagang::class,
+            'id_instansi',
+            'id_instansi'
+        );
+    }
 }

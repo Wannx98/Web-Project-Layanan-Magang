@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DokumenPengajuan extends Model
 {
@@ -21,4 +22,12 @@ class DokumenPengajuan extends Model
         'status_verifikasi',
         'catatan_verifikasi',
     ];
+    public function pengajuanMagang(): BelongsTo
+    {
+        return $this->belongsTo(
+            PengajuanMagang::class,
+            'id_pengajuan',
+            'id_pengajuan'
+        );
+    }
 }

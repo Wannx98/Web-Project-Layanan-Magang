@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class KegiatanMagang extends Model
 {
@@ -18,4 +19,12 @@ class KegiatanMagang extends Model
         'deskripsi',
         'hasil_kegiatan',
     ];
+    public function pengajuanMagang(): BelongsTo
+    {
+    return $this->belongsTo(
+        PengajuanMagang::class,
+        'id_pengajuan',
+        'id_pengajuan'
+        );
+    }
 }
