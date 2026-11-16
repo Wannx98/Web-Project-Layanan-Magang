@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Mahasiswa;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Dosen extends Model
@@ -29,31 +30,40 @@ class Dosen extends Model
     }
     public function screenings(): HasMany
     {
-    return $this->hasMany(
-        Screening::class,
-        'id_dosen',
-        'id_dosen'
+        return $this->hasMany(
+            Screening::class,
+            'id_dosen',
+            'id_dosen'
         );
     }
     public function pengajuanKonversis(): HasMany
     {
-    return $this->hasMany(
-        PengajuanKonversi::class,
-        'id_dosen_pemeriksa',
-        'id_dosen'
+        return $this->hasMany(
+            PengajuanKonversi::class,
+            'id_dosen_pemeriksa',
+            'id_dosen'
         );
     }
     public function laporanMagangs(): HasMany
     {
-    return $this->hasMany(
-        LaporanMagang::class,
-        'id_dosen_verifikator',
-        'id_dosen'
+        return $this->hasMany(
+            LaporanMagang::class,
+            'id_dosen_verifikator',
+            'id_dosen'
         );
     }
     public function user()
     {
-    return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function mahasiswaBimbingan(): HasMany
+    {
+        return $this->hasMany(
+            Mahasiswa::class,
+            'id_dosen_pembimbing',
+            'id_dosen'
+        );
     }
 }
 

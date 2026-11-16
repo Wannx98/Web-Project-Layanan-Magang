@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Dosen;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Mahasiswa extends Model
 {
@@ -40,5 +42,13 @@ class Mahasiswa extends Model
     public function user()
     {
     return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function dosenPembimbing(): BelongsTo
+    {
+        return $this->belongsTo(
+            Dosen::class,
+            'id_dosen_pembimbing',
+            'id_dosen'
+        );
     }
 }
