@@ -32,4 +32,32 @@ class DosenController extends Controller
             ]
         ], 200);
     }
+
+    public function mahasiswaBimbingan(Request $request)
+    {
+        $dosen = $request->user()->dosen;
+
+        if (!$dosen) {
+            return response()->json([
+                'message' => 'Profil Dosen tidak ditemukan!'
+            ], 404);
+        }
+
+        $mahasiswa = $dosen->mahasiswaBimbingan()
+            ->get([
+                'id_mahasiswa',
+                'nim',
+                'nama',
+                'email',
+                'prodi',
+                'angkatan',
+            ]);
+
+        return response()->json([
+            'message' => 'Berhasil mengambil daftar mahasiswa bimbingan!',
+            'total' => $mahasiswa->count(),
+            'data' => $mahasiswa,
+        ], 200);
+    }
+
 }

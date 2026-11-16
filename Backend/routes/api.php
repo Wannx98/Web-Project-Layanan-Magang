@@ -49,10 +49,15 @@ Route::middleware(['auth:sanctum', 'role:dosen'])->get('/dosen/dashboard', funct
         'role' => $request->user()->role,
     ]);
 });
-
+        //profile
 Route::middleware(['auth:sanctum', 'role:dosen'])->get(
     '/dosen/profile',
     [DosenController::class, 'profile']
+);
+        //Data mahasiswa bimbingan
+Route::middleware(['auth:sanctum', 'role:dosen'])->get(
+    '/dosen/mahasiswa-bimbingan',
+    [DosenController::class, 'mahasiswaBimbingan']
 );
 
      //Admin
@@ -69,4 +74,14 @@ Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin/dashboard', funct
 Route::middleware(['auth:sanctum', 'role:admin'])->post(
     '/admin/create-dosen',
     [AdminController::class, 'createDosen']
+);
+        //Admin Assing Mahasiswa bimbingan ke dosen
+Route::middleware(['auth:sanctum', 'role:admin'])->put(
+    '/admin/assign-dosen-pembimbing',
+    [AdminController::class, 'assignDosenPembimbing']
+);
+        //Admin Minta data mahasiswa 
+Route::middleware(['auth:sanctum', 'role:admin'])->get(
+    '/admin/mahasiswa-dpa',
+    [AdminController::class, 'daftarMahasiswaDpa']
 );
