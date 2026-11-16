@@ -21,6 +21,8 @@ class MahasiswaController extends Controller
             ], 404);
         }
 
+        $dosen = $mahasiswa->dosenPembimbing;
+        
         // Kirim data profil Mahasiswa
         return response()->json([
             'message' => 'Berhasil mengambil profil Mahasiswa!',
@@ -29,7 +31,15 @@ class MahasiswaController extends Controller
                 'nim' => $mahasiswa->nim,
                 'nama' => $mahasiswa->nama,
                 'email' => $mahasiswa->email,
+                'prodi' => $mahasiswa->prodi,
+                'angkatan' => $mahasiswa->angkatan,
+                'dosen_pembimbing' => $dosen ? [
+                    'id_dosen' => $dosen->id_dosen,
+                    'nama' => $dosen->nama,
+                    'nidn' => $dosen->nidn,
+                ] : null,
             ]
         ], 200);
     }
+
 }
